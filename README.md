@@ -137,5 +137,6 @@ alembic upgrade head
 - **Passwords** are hashed with bcrypt via `passlib`; plaintext passwords are
   never stored or logged.
 - **Tags** are stored as a Postgres array column for efficient filtering with
-  `tags.any(tag)`, kept simple (single-tag filter) rather than building a
-  separate many-to-many tags table — a reasonable tradeoff for this scope.
+  `func.array_position(tags, tag) IS NOT NULL`, kept simple (single-tag
+  filter) rather than building a separate many-to-many tags table — a
+  reasonable tradeoff for this scope.
